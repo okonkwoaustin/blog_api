@@ -1,3 +1,3 @@
 __pycache__/
 blog-env/
-/db.sqlites
+*sqlites
