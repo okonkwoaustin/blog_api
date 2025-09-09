@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +41,13 @@ INSTALLED_APPS = [
 
     # Third-party apps
     "rest_framework",
+    "rest_framework.authtoken",
     "drf_spectacular",
+    'allauth',
+    'allauth.account',
+    "allauth.socialaccount",
+    'dj_rest_auth',
+    "dj_rest_auth.registration",
 
     # Local apps
     "blogs",
@@ -54,6 +61,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    #All Auth Middleware
+    "allauth.account.middleware.AccountMiddleware"
 ]
 
 ROOT_URLCONF = "blog_apis.urls"
@@ -61,7 +71,7 @@ ROOT_URLCONF = "blog_apis.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -131,6 +141,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Dr_spectacular
 
 REST_FRAMEWORK = {
+    # Auth settings
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
+    ],
+    # Schema Settings
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
@@ -140,3 +156,7 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }
+
+# Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 1

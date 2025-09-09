@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Api</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            padding: 40px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 12px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📌 Welcome to Blog API</h1>
+        <p>Here are some useful API endpoints:</p>
+        <ul>
+            <li><a href="{% url 'schema' %}">👤 Schema Link</a></li>
+            <li><a href="{% url 'swagger-ui' %}">📚 Swagger-ui API Endpoints</a></li>
+            <li><a href="{% url 'redoc' %}">📝 Redoc API Endpoints</a></li>
+            <!--<li><a href="">🌍 API Root</a></li> -->
+        </ul>
+    </div>
+</body>
+</html>
